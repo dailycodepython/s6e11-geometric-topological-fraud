@@ -5,6 +5,9 @@ Math over brute compute: Optimal Transport, Persistent Homology (TDA), Geodesic 
 **Philosophy:** *Math over brute compute.*  
 A lean, CPU-friendly machine learning pipeline for **Kaggle Playground Series S6E11 (Credit Card Fraud Detection)**, combining Optimal Transport, Topological Data Analysis (TDA), Geodesic Manifolds, and Cooperative Game Theory (SHAP) on top of LightGBM.
 
+> **Key Empirical Result:** Adding 10 geometric features (+6 Optimal Transport, +4 Graph Dijkstra) expanded the feature space from 24 to 34 columns and boosted validation **ROC AUC from 0.94396 to 0.96599 (+0.02203)** on 699,960 transactions.
+
+
 ---
 
 ## 1. Problem & Data Architecture
@@ -43,7 +46,7 @@ $$P_{\text{calibrated}}(c \mid x) \propto \frac{P(c \mid x)}{P(c)}$$
 | :--- | :---: | :---: | :--- |
 | **1. Baseline LightGBM** (24 raw features) | `0.94396` | `0.65268` | Single split (`random_state=42`) |
 | **2. Baseline + Bayesian Calibration** | `0.94396` | `0.86874` | Prior probability shift |
-| **3. Extended Geometry** (+ OT, Graph, Isomap) | `[TBD]` | — | Feature space expansion |
+| **3. Extended Geometry** (+6 OT, +4 Dijkstra) | **0.96599** | — | **+0.02203 AUC** gain (34 features total) |
 | **4. Full 5-Fold Ensemble** (+ Ripser TDA) | **`[TBD]`** | — | Final OOF score & Kaggle submission |
 
 ---
